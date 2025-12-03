@@ -1,0 +1,44 @@
+ALGORITHM SentenceWithTable
+VAR
+    Array : char[];         // Array to store the sentence
+    i, j : INTEGER;            // Indexes for iterating through characters
+    charCount, wordCount, vowelCount : INTEGER   // Counters for characters,
+BEGIN
+     // Initialize counters
+    charCount := 0;
+    wordCount := 1;            // Start from 1 because the last word before '.' has no space after it
+    vowelCount := 0;
+    i := 0;
+
+    // Ask the user to enter a sentence
+    WRITE("Enter your sentence (end with '.') : ");
+
+    // Read the sentence character by character and store it in the array until '.' is found
+    READ(Array[i]);                 // Reading the first letter
+    WHILE Array[i] != '.' DO        // The loop continues as long as the character is not '.'
+    READ(Array[i]);                 // Read the next letter
+    i := i + 1
+    END_WHILE
+
+    j := length(Array);
+    // Count characters, words, and vowels
+    FOR i FROM 0 TO j-1 STEP 1  DO
+        //Count each letter
+        charCount := charCount + 1;
+
+        // Increase word count when a space is found
+        IF (Array[i] = ' ') THEN
+            wordCount := wordCount + 1;
+        END_IF
+
+         // Increase vowel count if the character is a vowel
+        IF (Array[i] = 'a' OR Array[i] = 'e' OR Array[i] = 'i' OR Array[i] = 'o' OR Array[i] = 'u') THEN
+            vowelCount := vowelCount + 1;
+        END_IF
+    END_FOR
+
+    // Display results
+    WRITE("Length = ", charCount);
+    WRITE("Words = ", wordCount);
+    WRITE("Vowels = ", vowelCount);
+END
